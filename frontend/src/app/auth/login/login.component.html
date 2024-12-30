@@ -1,0 +1,143 @@
+<!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden">
+
+  <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5 d-flex align-items-center" >
+    <div class="col gx-lg-5 align-items-center mb-5">
+      <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+        <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+          Accedi e rivoluziona <br />
+          <span style="color: hsl(218, 81%, 75%)">il tuo business</span>
+        </h1>
+      </div>
+    </div>
+
+    <div class="col-lg-5 mb-5 mb-lg-0 position-relative d-flex align-items-center" style="width: 340px;">
+
+        <div class="col card bg-glass mt-5" style="flex-direction: column;">
+          <div class="card-body px-4 py-3 px-md-5">
+            <form *ngIf="isRegister == false" [formGroup]="loginForm">
+
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input type="email" id="email" formControlName="email" placeholder="Email" class="form-control" />
+                <label class="form-label" for="form3Example3">Indirizzo Email</label>
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input type="password" id="password" formControlName="password" placeholder="Password" class="form-control" />
+                <label class="form-label" for="form3Example4">Password</label>
+              </div>
+
+              <!-- Register buttons -->
+              <div class="text-center">
+                <button (click)="login()" class="btn sign-in">Accedi</button>
+                <p style="color: white;">o</p>
+                <button (click)="showRegister()" class="btn sign-up">
+                  Registrati
+                </button>              
+              </div>
+            </form>
+
+
+            <form *ngIf="isRegister == true" [formGroup]="registerForm">
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="firstname" formControlName="firstname" placeholder="Nome" class="form-control" />
+                    <label class="form-label" for="form3Example1">Nome *</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="lastname" formControlName="lastname" placeholder="Cognome" class="form-control" />
+                    <label class="form-label" for="form3Example2">Cognome *</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="d-flex flex-column">
+                    <mat-form-field appearance="fill" class="w-100 d-flex">
+                      <input matInput [matDatepicker]="picker" formControlName="birth_date" placeholder="gg-mm-aaaa"/>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                      <!-- <mat-error *ngIf="registerForm.get('birth_date')?.invalid && registerForm.get('birth_date')?.touched">
+                        Inserisci una data valida
+                      </mat-error> -->
+                    </mat-form-field>
+                    <mat-label class="form-label">Data di Nascita *</mat-label>
+                  </div>
+                </div>                
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <select id="gender" formControlName="gender" class="form-control">
+                      <option value="" disabled selected></option>
+                      <option value="male">Uomo</option>
+                      <option value="female">Donna</option>
+                    </select>
+                    <label class="form-label" for="form3Example2">Genere *</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <select id="country" placeholder="Seleziona Paese" formControlName="country" class="form-control">
+                      <option value="" disabled selected></option>
+                      <option *ngFor="let country of countries" [value]="country.name">
+                        {{ country.name }}
+                      </option>
+                    </select>
+                    <label class="form-label" for="form3Example1">Paese *</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="phone_number" formControlName="phone_number" placeholder="Cellulare" class="form-control" />
+                    <label class="form-label" for="form3Example2">Cellulare *</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input type="email" id="email" formControlName="email" placeholder="Email" class="form-control" />
+                <label class="form-label" for="form3Example3">Indirizzo Email *</label>
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input type="password" id="password" formControlName="password" placeholder="Password" class="form-control" />
+                <label class="form-label" for="form3Example4">Password *</label>
+              </div>
+
+              <!-- Account User -->
+              <div class="form-outline mb-4">
+                <input type="checkbox" id="vendorCheckbox" formControlName="isVendor" class="form-check-input" />
+                <label class="form-label" for="vendorCheckbox"> Sei un venditore?</label>
+              </div>
+
+              <!-- Register buttons -->
+              <div class="text-center">
+                <button (click)="register()" class="btn sign-up">
+                  Registrati
+                </button> 
+                <p style="color: white;">o</p> 
+                <button (click)="showLogin()" class="btn sign-in">Accedi</button>            
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<!-- Section: Design Block -->
+
+
+    
+
+
+  
+  

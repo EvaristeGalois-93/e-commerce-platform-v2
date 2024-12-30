@@ -1,0 +1,182 @@
+<section class="background-radial-gradient overflow-hidden" style="position: relative; z-index: 0;">
+
+<div class="checkout-container">
+
+    <!-- Riepilogo Ordine -->
+
+    <div class="checkout-sidebar">
+        <h2 style="margin-bottom: 50px;">Riepilogo Ordine</h2>
+        <div class="order-summary">
+          <div class="order-card" *ngFor="let order of orders">
+            <div class="row order-row">
+              <!-- Colonna per l'immagine -->
+              <div class="col-4">
+                <img class="img-fluid" [src]="order.product.filestorage[0].path" routerLink="/prodotti/{{order.product.id}}" alt="{{order.product.name}}"/>
+              </div>
+          
+              <!-- Colonna per nome, quantità e prezzo -->
+              <div class="col-8">
+                <p routerLink="/prodotti/{{order.product.id}}" style="cursor: pointer;"><strong>{{ order.product.name }}</strong></p>
+                <p>Quantità: {{ order.quantity }}</p>
+                <p>Prezzo: {{ order.product.price }}€</p>
+              </div>
+            </div>
+          </div>
+          
+            <div class="order-total">
+                <p>Totale Carrello: {{ cartTotal }}€</p>
+                <p *ngIf="discountedTotal !== cartTotal">
+                    <span><s>{{ cartTotal }}€</s></span>
+                    <span><strong>{{ discountedTotal }}€</strong></span>
+                </p>
+                <p *ngIf="selectedPayment === 'cod'">+10€ Contrassegno</p>
+                <h3>Totale: {{ finalTotal }}€</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout-main">
+        <!-- Step 1: Indirizzo di Spedizione -->
+        <section class="checkout-step container">
+            <h2>Indirizzo di Spedizione</h2>
+            <form [formGroup]="shippingForm" (ngSubmit)="saveShippingAddress()">
+              
+              <!-- Riga Nome e Cognome -->
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <input type="text" class="form-control" placeholder="Nome" formControlName="firstname" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <input type="text" class="form-control" placeholder="Cognome" formControlName="lastName" required />
+                </div>
+              </div>
+              
+              <!-- Riga Indirizzo e Codice Postale -->
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <input type="text" class="form-control" placeholder="Indirizzo" formControlName="address" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="Codice Postale" formControlName="zipCode" required />
+                    <div *ngIf="shippingForm.get('zipCode')?.invalid && shippingForm.get('zipCode')?.touched">
+                      <small *ngIf="shippingForm.get('zipCode')?.errors?.['required']" class="text-danger">Il codice postale è obbligatorio.</small>
+                      <small *ngIf="shippingForm.get('zipCode')?.errors?.['pattern']" class="text-danger">Il codice postale deve essere di 5 cifre.</small>
+                    </div>
+                </div>
+              </div>
+          
+              <!-- Riga Provincia e Paese -->
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <select class="form-select" formControlName="country" required>
+                    <option value="" disabled>Seleziona il Paese</option>
+                    <option value="IT">Italia</option>
+                    <option value="FR">Francia</option>
+                    <option value="ES">Spagna</option>
+                    <option value="DE">Germania</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <input type="text" class="form-control" placeholder="Città" formControlName="city" required />
+                </div>
+              </div>
+
+              <!-- Riga Provincia e Numero di telefono -->
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <input type="text" class="form-control" placeholder="Provincia" formControlName="province" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <input type="text" class="form-control" placeholder="Numero di Telefono" formControlName="phone_number" required />
+                </div>
+              </div>
+
+              
+              <!-- Bottoni salva e aggiungi -->
+              <div class="row">
+                <div class="col-12 d-flex justify-content-between align-items-center">
+                  <button type="button" class="btn btn-warning mt-auto" (click)="saveShippingAddress(); $event.stopPropagation()">
+                    Salva indirizzo
+                  </button>
+                  <span>oppure</span>
+                  <button type="button" class="btn add-btn btn-warning mt-auto" (click)="addNewShippingAddress(); $event.stopPropagation()">
+                    Aggiungi un nuovo indirizzo
+                  </button>
+                </div>
+              </div>
+            </form>
+        </section>
+          
+          
+
+        <!-- Step 2: Metodo di Pagamento -->
+        <section class="checkout-step container">
+            <h2>Metodo di Pagamento</h2>
+            <form [formGroup]="paymentForm" (ngSubmit)="saveCardPayment()">
+
+              <!-- CONTRASSEGNO O CARTA -->
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <input type="radio" placeholder="Contrassegno" formControlName="paymentMethod" value="cod" (change)="onPaymentChange('cod')" /> Contrassegno (+10€)
+                </div>
+                <div class="col-md-6 mb-3">
+                  <input type="radio" placeholder="Carta" formControlName="paymentMethod" value="creditCard" (change)="onPaymentChange('creditCard')" /> Carta di Credito
+                </div>
+              </div>
+
+              <div *ngIf="selectedPayment === 'creditCard'" class="credit-card-info">
+                <!-- NOME E COGNOME -->
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="Nome" formControlName="firstName" required />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="Cognome" formControlName="lastName" required />
+                  </div>
+                </div>
+
+                <!-- NUMERO CARTA E CVC -->
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="Numero di Carta" formControlName="cardNumber" required />
+                    <div *ngIf="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched">
+                      <small *ngIf="paymentForm.get('cardNumber')?.errors?.['required']" class="text-danger">Il numero della carta è obbligatorio.</small>
+                      <small *ngIf="paymentForm.get('cardNumber')?.errors?.['pattern']" class="text-danger">Il numero della carta deve essere di 16 cifre.</small>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" placeholder="CVC" formControlName="cvc" required />
+                    <div *ngIf="paymentForm.get('cvc')?.invalid && paymentForm.get('cvc')?.touched">
+                      <small *ngIf="paymentForm.get('cvc')?.errors?.['required']" class="text-danger">Il cvc è obbligatorio.</small>
+                      <small *ngIf="paymentForm.get('cvc')?.errors?.['pattern']" class="text-danger">Il cvc deve essere di 3 cifre.</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottoni salva e aggiungi -->
+              <div class="row">
+                <div class="col-12 d-flex justify-content-between align-items-center">
+                  <button type="button" class="btn btn-warning mt-auto" (click)="saveCardPayment(); $event.stopPropagation()">
+                    Salva metodo di pagamento
+                  </button>
+                  <span>oppure</span>
+                  <button type="button" class="btn add-btn btn-warning mt-auto" (click)="addNewCardPayment(); $event.stopPropagation()">
+                    Aggiungi un nuovo metodo di pagamento
+                  </button>
+                </div>
+              </div>
+
+          </form>
+        </section>
+
+        <!-- Step 3: Conferma Ordine -->
+        <section class="checkout-step">
+            <h2>Conferma Ordine</h2>
+            <p>Totale Ordine: <strong>{{ finalTotal }}€</strong></p>
+            <button type="button" class="btn btn-warning mt-auto" (click)="placeOrder(); $event.stopPropagation()">
+              Effettua Ordine
+            </button>
+        </section>
+    </div>
+</div>

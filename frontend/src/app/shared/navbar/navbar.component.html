@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg navbar-light overflow-hidden">
+    <div class="container-fluid px-4">
+      <div class="collapse navbar-collapse justify-content-between" id="navbarScroll">
+        <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+
+          <!-- VAI A HOMEPAGE-->
+          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Vai alla homepage">
+            <a class="nav-link active custom-blur" (click)="homepage();" style="color: aliceblue;">Atom</a>
+          </li>  
+
+          <!-- VAI AI PRODOTTI -->
+          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="top" (mouseenter)="showCategories()" (mouseleave)="hideCategories()">
+            <a class="nav-link active custom-blur" aria-current="page" (click)="goToItems()" style="color: aliceblue;">Prodotti</a>
+
+            <!-- COMPONENTE CATEGORIES -->
+
+            <!-- <div class="categories-dropdown" *ngIf="isCategoriesVisible == true">
+              <app-categories [categories]="categories"></app-categories>
+            </div> -->
+          </li>        
+
+          <!-- VAI AI PREFERITI-->
+          <li class="nav-item">
+            <a class="nav-link active custom-blur" aria-current="page" (click)="goToWishlist()" style="color:aliceblue">Preferiti</a>
+          </li>
+        </ul>
+
+        <!-- FORM DI RICERCA -->
+        <div class="d-flex">
+          <form *ngIf="inProduct == true" [formGroup]="searchForm" class="form-inline my-2 my-lg-0 d-flex">
+
+            <!-- SELECT CATEGORIE-->
+              <select class="input-category" aria-placeholder="categorie" formControlName="category_id" (change)="filterProducts()">
+              <!-- <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"> -->
+                <option selected value="-1">Tutte le categorie</option>
+                <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+              </select>
+
+            <!-- INPUT RICERCA-->
+            <input class="form-control mr-2" formControlName="filter_search" type="search" (onInputChange)="filterProducts()" placeholder="Cerca prodotto" aria-label="Search">
+          </form>
+        </div>      
+
+        <!-- CARRELLO E LOGIN -->
+        <ul class="navbar-nav ml-auto">
+
+          <!-- VAI AL CARRELLO -->
+          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Vai al carrello">
+            <a class="nav-link active custom-blur" (click)="goToCart()" style="color:aliceblue">
+              <i class="bi bi-cart"></i>
+              <div *ngIf="isAuth==true" class="badge bg-primary" style="border-radius: 50%;">{{items}}</div>
+            </a>
+          </li>
+
+          <!-- VAI ALL'AREA PERSONALE -->
+          <li *ngIf="isAuth" class="nav-item" data-bs-toggle="tooltip" data-bs-placement="top" title="Vai all'area personale'">
+            <a class="nav-link active custom-blur" aria-current="page" (click)="goToItems()" style="color: aliceblue;">Area Personale</a>
+          </li>  
+
+          <!-- LOGIN E LOGOUT -->
+          <li class="nav-item d-flex align-items-center custom-blur" data-bs-placement="top" title="Accedi">
+            <span *ngIf="isAuth" class="material-icons" data-bs-toggle="tooltip" title="Esci" (click)="logout()" style="color: rgb(12, 247, 47)">
+              account_circle
+            </span>
+            <span *ngIf="!isAuth" class="material-icons" data-bs-toggle="tooltip" title="Accedi" (click)="login()" style="color: white">
+              account_circle
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+

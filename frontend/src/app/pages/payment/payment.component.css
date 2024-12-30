@@ -1,0 +1,71 @@
+
+.background-radial-gradient {
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    background-image: url('/assets/images/code.jpg');    
+}
+
+
+.checkout-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.checkout-sidebar {
+    flex: 1;
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.checkout-main {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.checkout-step {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.order-summary img {
+    width: 100%;
+    height: 60%;
+    cursor: pointer;
+}
+
+.order-summary p {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Amazon Ember", Arial, sans-serif;
+}
+
+.order-card{
+    margin-bottom: 50px;
+}
+
+.order-total {
+    font-weight: bold;
+    color: #000;
+}
+
+.credit-card-info input {
+    display: block;
+    /* margin: 10px 0; */
+}
+
+.add-btn{
+    background-color: #0096c8;
+    color: white;
+}
+

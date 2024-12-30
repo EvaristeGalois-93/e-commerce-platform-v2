@@ -1,0 +1,48 @@
+
+.background-radial-gradient {
+    background-color: hsl(218, 41%, 15%);
+    background-image: radial-gradient(650px circle at 0% 0%);
+    background-image: url('/assets/images/vector.jpg');
+  }
+  
+
+.catalogo:hover {
+  color: #d4af19;
+}
+
+.button:hover{
+  width: 50px;
+}
+
+.button.bi-paypal{
+  color: red;
+}
+
+.card-product{
+  background-color: white;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.cart-item img {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.cart-item .ms-3 {
+  flex: 1;
+}
+
+.card {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-link {
+  padding: 0;
+  font-weight: bold;
+}
+

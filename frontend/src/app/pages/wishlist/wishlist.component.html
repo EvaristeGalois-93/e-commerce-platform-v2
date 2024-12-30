@@ -1,0 +1,43 @@
+<section class="background-radial-gradient overflow-hidden" style="position: relative; z-index: 0;">
+    <!-- <div class="wishlist-container" *ngIf="wishlistProducts.length > 0; else noWishlist">
+        <div *ngFor="let wishlist of wishlistProducts" class="wishlist-item">
+        <img [src]="getSafeImageUrl(wishlist.product.filestorage[0].path)" alt="{{ wishlist.product.name }}" [routerLink]="['/prodotti', wishlist.product.id]" class="product-image" />
+        <div class="product-details">
+            <h3 [routerLink]="['/prodotti', wishlist.product.id]">{{ wishlist.product.name }}</h3>
+            <p>Prezzo: €{{ wishlist.product.price }}</p>
+            <button (click)="removeFromWishlist(wishlist.product.id)" class="remove-btn">
+            <i class="bi bi-trash"></i> Rimuovi
+            </button>
+        </div>
+        </div>
+    </div> -->
+
+    <div class="container px-4 py-5 px-md-5 text-lg-start my-5" *ngIf="wishlistProducts.length > 0">
+        <div class="row card-product" style="border-radius: 15px;">
+          <div class="col-md-8">
+            <div class="wishlist-item" *ngFor="let wishlist of wishlistProducts; let i = index" style="padding-bottom: 15px; margin-bottom: 15px;">
+              <div class="d-flex">
+                <img [src]="getSafeImageUrl(wishlist.product.filestorage[0].path)" [routerLink]="['/prodotti', wishlist.product.id]" class="product-image" style="width: 150px; height: 150px;" alt="Product Image">
+                <div class="ms-3">
+                    <h5 [routerLink]="['/prodotti', wishlist.product.id]">{{ wishlist.product.name }}</h5>
+                    <div class="ms-auto">
+                        <p style="font-weight: normal; font-size: 20px; margin-left: 10px; margin-top: 5px;">{{ wishlist.product.price }}€</p>
+                    </div>
+                    <button (click)="removeFromWishlist(wishlist.product.id)" class="remove-btn">
+                        <i class="bi bi-trash"></i> Rimuovi
+                    </button>
+                    <button *ngIf="wishlist.product.status === 'active'" (click)="addToCart(wishlist.product.id); $event.stopPropagation()" class="add-btn">
+                        <i class="bi bi-bag-plus-fill"></i> Aggiungi al carrello
+                    </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <ng-template #noWishlist>
+        <p>La tua lista dei desideri è vuota.</p>
+    </ng-template>
+</section>
+  

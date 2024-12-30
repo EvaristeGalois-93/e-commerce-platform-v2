@@ -1,0 +1,113 @@
+.background-radial-gradient {
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  background-image: url('/assets/images/pattern.jpg');    
+}
+
+#radius-shape-1 {
+  height: 220px;
+  width: 220px;
+  top: -60px;
+  left: -130px;
+  background: radial-gradient(#44006b, #ad1fff);
+  overflow: hidden;
+}
+
+#radius-shape-2 {
+  border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+  bottom: -60px;
+  right: -110px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(#44006b, #ad1fff);
+  overflow: hidden;
+}
+
+.bg-glass {
+  background: linear-gradient(to right, #293573, #511a73);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+.form-label{
+  color: #0096c8;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  transition: all 0.3s ease
+}
+
+.btn:hover {
+  opacity: 0.9; 
+  cursor: pointer;
+}
+
+.sign-in{
+  color: white;
+  background-color: #0096c8;
+}
+
+.sign-up{
+  color: black;
+  background-color: #d4af19;
+}
+
+.text-center {
+  margin-top: 20px;
+}
+
+.card {
+  max-height: 600px; 
+  overflow-y:auto; 
+  scrollbar-width: thin;
+}
+
+.card-body{
+  padding-right: 1rem !important;
+  padding-left: 1rem !important;
+}
+
+.cancel-button-btn {
+  background-color: #0096c8 !important;
+  color: #ffffff !important;
+}
+
+.mat-mdc-form-field{
+  flex-direction: unset;
+  max-height: 44px;
+}
+
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper{
+  width: unset !important;
+}
+
+:host ::ng-deep .mat-mdc-form-field-flex{
+  height: 44px !important;
+  border-radius: 5px !important;
+  align-items: center !important;
+}
+  
+:host ::ng-deep .mat-mdc-text-field-wrapper{
+  border-radius: 5px !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: unset;
+}

@@ -1,0 +1,74 @@
+.background-radial-gradient {
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    background-image: url('/assets/images/ai.jpg');    
+}
+
+.wishlist-container {
+    max-width: 800px;
+    margin: 106px auto;
+    padding: 20px;
+}
+
+.card-product{
+    justify-content: center;
+}
+
+  
+.wishlist-item {
+    display: flex;
+    /* position: relative; */
+    background-color: white;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 8px;
+    padding-bottom: 15px; 
+    margin-bottom: 15px;
+}
+  
+
+.product-image {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    margin: 20px;
+}
+  
+.product-details {
+    flex: 1;
+}
+  
+.remove-btn {
+    /* position: absolute;
+    bottom: 10px;
+    left: 200px; */
+    background: none;
+    border: none;
+    color: #d9534f;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+  
+.remove-btn:hover {
+    color: #c9302c;
+}
+
+.add-btn {
+    /* position: absolute;
+    bottom: 10px;
+    right: 150px; */
+    background: none;
+    border: none;
+    color: #0096c8;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+  
+.add-btn:hover {
+    color: #0096c8;
+}
+  

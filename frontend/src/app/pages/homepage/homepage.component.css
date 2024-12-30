@@ -1,0 +1,109 @@
+.background-radial-gradient {
+        z-index: -1;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        background-image: url('/assets/images/pc.jpg');    
+}
+
+
+  .shop-name{
+      font-size: 6rem; 
+      transition: color 0.3s; 
+      margin-top: 30px;
+  }
+
+  .custom-text-container{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+  }
+  
+  .first-letter, .last-letter {
+    font-size: 169;
+    font-family: ui-sans-serif;
+  }
+  
+  .atom-icon {
+    border-radius: 50%;
+    width: 43px; 
+    height: 43px; 
+    background-size:contain; 
+    transition: width 0.3s, height 0.3s;
+  }
+
+  .atom-icon:hover {
+    width: 46px; 
+    height: 50px; 
+    /* background-repeat: no-repeat; */
+}
+  
+    .card-body px-4 py-5 px-md-5{
+      width: 300px;
+    }
+
+
+  .zoom-on-hover {
+    transition: transform 0.3s;
+  }
+  
+  .zoom-on-hover:hover {
+    transform: scale(1.1);
+  }
+
+
+.zoom-on-hover:hover .first-letter,
+.zoom-on-hover:hover .last-letter {
+    color: #0096c8;
+}
+
+
+.x-letter {
+  font-family: ui-sans-serif; 
+}
+
+.x-letter:hover {
+  color: #d4af19;
+}
+  
+.btn-style {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #d4af19;
+  border: 2px solid #d4af19;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-style:hover {
+  background-color: #b38e14;
+  border-color: #b38e14;
+  color: #fff;
+  transform: scale(1.05);
+  /* cursor: none; */
+}
+
+.custom-product{
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  border: 2px solid #0096c8;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background-color: #0096c8;
+}
+
+.custom-product:hover{
+  background-color: #0096c8;
+  transform: scale(1.05);
+  cursor: none;
+}
+
+

@@ -1,0 +1,23 @@
+.order-status-bar {
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.order-summary-card {
+    background-color: #fff;
+}
+
+.order-item-image {
+    border-radius: 4px;
+}
+
+.order-info {
+    background-color: #f9f9f9;
+}
+
+.total-amount {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #333;
+}

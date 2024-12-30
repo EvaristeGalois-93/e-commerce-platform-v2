@@ -1,0 +1,87 @@
+.navbar-nav .nav-link,
+.navbar-brand,
+.navbar-nav .nav-link:hover,
+.navbar-brand:hover {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.navbar{
+  position: fixed; 
+  z-index: 1000; 
+  width: 100%; 
+  /* background: linear-gradient(to right, #450070, #2c3c90); */
+  background: linear-gradient(to right, #293573, #511a73, #1c2b79);
+  ;
+  height: 50px;
+}
+
+.navbar-brand:hover,
+.nav-item .nav-link:hover {
+  /* color: #d4af19 !important; */
+  color: #0096c8 !important;
+}
+
+.nav-item, .navbar-brand{
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.btn-outline-custom{
+  color:rgb(99, 136, 255);
+  border-color: rgb(99, 136, 255);
+}
+
+.btn-outline-custom:hover {
+  background-color: rgb(99, 136, 255); 
+  color: white; 
+  /* cursor: none; */
+}
+
+.material-icons{
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.material-icons:hover{
+  /* color: rgb(99, 136, 255);  */
+  color: #0096c8 !important;
+}
+
+.custom-blur {
+  position: relative;
+  color: #d4af19 ;
+  /* text-shadow: 0 0 5px rgba(255, 255, 255, 0.7); */
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent; 
+}
+
+.custom-blur:hover {
+  text-shadow: none; 
+  border-bottom: 2px solid #0096c8 ; 
+}
+
+
+.form-control{
+  min-width: 100px;
+  background: linear-gradient(to right, #450070, #2c3c90);
+  color:#0096c8;
+}
+
+.input-category{
+  background: linear-gradient(to right, #450070, #2c3c90);
+  min-width: 100px;
+  border-radius: 8px;
+  font-size: larger;
+  scrollbar-width: thin !important;
+}
+
+.input-category option{
+  background: linear-gradient(to right, #450070, #2c3c90) !important;
+  background-color: #450070 !important;
+  color: #0096c8 !important;
+}
+
+input::placeholder {
+  color:#0096c8; 
+  opacity: 1; 
+}

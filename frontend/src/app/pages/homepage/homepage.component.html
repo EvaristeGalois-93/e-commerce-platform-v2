@@ -1,0 +1,61 @@
+
+
+  <!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden">
+
+  <!-- Utente autenticato-->
+  <div *ngIf="isAuth" class="container px-4 py-5 px-md-5 text-center text-lg-start my-5" style="display: flex; ">
+    <div class="row gx-lg-5 align-items-center mb-5">
+      <div class="shop-name" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif" >
+        <div class="custom-text-container zoom-on-hover" style="color: hsl(218, 81%, 95%);">
+          <!-- <p *ngIf="user.gender === 'male'" class="first-letter">Benvenuto {{user.firstname}}</p>
+          <p *ngIf="user.gender === 'female'" class="first-letter">Benvenuta {{user.firstname}}</p> -->
+          <p class="first-letter">Benvenut{{ user.gender === 'female' ? 'a' : 'o' }} {{ user.firstname }}</p>
+
+        </div>
+      </div>
+        <div class="nav-item d-flex justify-between" style="text-align: center; margin-top: 8px;">
+          <a *ngIf="hasRole('administrator')" class="nav-link active custom-product me-3" aria-current="page" routerLinkActive="active" routerLink="/dashboard">
+            Vai alla dashboard
+            <i class="bi bi-box-arrow-right"></i>
+          </a> 
+          <a class="nav-link active btn-style" aria-current="page" routerLinkActive="active" routerLink="/prodotti">
+            Vai ai prodotti
+            <i class="bi bi-box-arrow-right"></i>
+          </a>               
+        </div>
+    </div>
+  </div>
+
+  <!-- Utente non autenticato-->
+    <div *ngIf="!isAuth" class="container px-4 py-5 px-md-5 text-center text-lg-start my-5" style="display: flex; ">
+      <div class="row gx-lg-5 align-items-center mb-5">
+        <div class="shop-name" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif" >
+          <div class="custom-text-container zoom-on-hover" style="color: hsl(218, 81%, 95%);">
+            <p class="first-letter">AT</p>
+            <div class="atom-icon" style="background-image: url('/assets/images/nuclear.jpg');"></div>
+            <p class="last-letter">M</p>
+            <p class="x-letter">.x</p>
+          </div>
+        </div>
+
+        <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10; transition: color 0.3s; width: 44%;">
+          <h1 class="my-1 display-5 fw-bold ls-tight zoom-on-hover" style="color: hsl(218, 81%, 95%); font-family: ui-sans-serif;">
+            Innovazione e tecnologia <br />
+            <span style="color: hsl(218, 81%, 75%);">per il tuo successo</span>
+          </h1>
+          <div class="nav-item" style="text-align: end; margin-top: 8px;">
+            <a class="nav-link active custom-blur btn-style" aria-current="page" routerLinkActive="active" routerLink="/prodotti">
+              Scopri i nostri prodotti
+              <i class="bi bi-box-arrow-right"></i>
+            </a>            
+          </div>
+        </div>
+        <!-- <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+        </div> -->
+      </div>
+    </div>
+</section>
+  <!-- Section: Design Block -->

@@ -1,0 +1,76 @@
+<section [ngClass]="{ 'h-100': prodottiCarrello.length === 0 }" class="background-radial-gradient overflow-hidden" style="min-height: 100vh; background-size: cover; background-position: center; z-index: 0;">
+  
+  <!-- <div *ngIf="prodottiCarrello.length === 0" class="text-center h-100">
+    <h1 class="catalogo prodotti" style="cursor: pointer; padding-top: 100px; margin-left: 10px; color: hsl(218, 81%, 95%); font-family: ui-sans-serif;">Il tuo carrello è vuoto:</h1>
+  </div> -->
+
+  <app-spinner *ngIf="isLoading"></app-spinner>
+
+  <div class="container px-4 py-5 px-md-5 text-lg-start my-5" *ngIf="prodottiCarrello.length > 0">
+    <div class="row card-product" style="border-radius: 15px;">
+      <div class="col-md-8">
+        <div class="cart-item" *ngFor="let order of prodottiCarrello; let i = index" style="padding-bottom: 15px; margin-bottom: 15px;">
+          <div class="d-flex" style="width: 100%;">
+            <img [src]="order.product.filestorage[0].path" class="img-thumbnail" style="width: 150px; height: 150px;">
+            <div class="ms-3">
+              <h5>{{order.product.name}}</h5>
+              <!-- <p style="font-weight: bold; margin: 0;">Prezzo: {{order.product.price}} €</p> -->
+              <p style="margin: 0;">Quantità: 
+                <select [(ngModel)]="order.quantity">
+                  <option *ngFor="let quantity of [1, 2, 3, 4, 5]" [value]="quantity">{{quantity}}</option>
+                </select>
+              </p>
+              <p style="color: green;">Disponibilità immediata</p>
+              <button type="button" class="btn btn-warning mt-auto" (click)="deleteProduct(i)">Rimuovi</button>
+              <!-- <button class="btn btn-link" style="color: #007bff;" (click)="updateProduct(order)" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Modifica</button> -->
+            </div>
+            <div class="ms-auto">
+              <p style="font-weight: bold; font-size: 28px; margin-left: 15px;">{{(order.product.price)}}€</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sezione acquisto -->
+      <div class="col-md-4">
+        <div class="card" style="padding: 20px;margin-top: 45px;">
+          <p style="font-weight: bold;">Totale provvisorio ({{prodottiCarrello.length}} articoli): {{calculateTotalPrice()}}€</p> 
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="giftOption">
+            <label class="form-check-label" for="giftOption">
+              Questo ordine contiene un regalo
+            </label>
+          </div>
+          <button class="btn btn-warning w-100 mt-3" routerLink="/pagamento">Procedi all'ordine</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Modal -->
+ 
+<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: hsl(218, 41%, 20%); border-bottom: none;">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-weight: 800; color: #d4af19;">Modifica Prodotto</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="background-color: hsl(218, 41%, 20%);">
+        <form [formGroup]="profileForm" style="display: flex; flex-direction: column; flex-wrap: wrap;">
+          <label for="quantita" style="font-weight: 800; color: whitesmoke;">Quantità: </label>
+          <input id="quantita" type="text" formControlName="quantity">
+        </form>
+      </div>
+      <div class="modal-footer" style="background-color: hsl(218, 41%, 20%); border-top: none;">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateSelectedProduct()">Salva</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+

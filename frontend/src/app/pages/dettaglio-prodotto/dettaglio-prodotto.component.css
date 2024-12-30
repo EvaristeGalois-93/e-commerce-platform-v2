@@ -1,0 +1,16 @@
+
+.background-radial-gradient {
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    background-image: url('/assets/images/tech.jpg');    
+}
+
+.img-thumbnail{
+  cursor: pointer !important;
+}
+
+img {
+  cursor: pointer !important;
+}

@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files *//* styles.css */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+/* body{
+  cursor: none !important;
+} */
+
+  .custom-cursor {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%); 
+  }
+  
+  .electric {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 25px rgba(0, 255, 255, 0.5);
+    animation: electric-blink 0.1s infinite alternate;
+  }
+  
+  @keyframes electric-blink {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  }
+  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
