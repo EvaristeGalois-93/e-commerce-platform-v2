@@ -2,8 +2,11 @@
 <section class="background-radial-gradient overflow-hidden" style="position: relative; z-index: 0;">
 
   <app-spinner *ngIf="isLoading"></app-spinner>
+
+  <app-header></app-header>
   
-  <h1 class="catalogo" style="margin-top: 100px; margin-left: 10px; color: hsl(218, 81%, 95%); font-family: ui-sans-serif"></h1>
+  
+  <h1 class="catalogo" style="margin-top: 40px; margin-left: 10px; color: hsl(218, 81%, 95%); font-family: ui-sans-serif"></h1>
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
       <div class="row justify-content-center">
           <div class="col-md-3 py-2" *ngFor="let prodotto of prodotti; let i = index">

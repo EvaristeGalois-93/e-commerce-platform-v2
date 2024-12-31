@@ -24,6 +24,7 @@ import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { CategoriesComponent } from './shared/categories/categories.component';
 import { SummaryOrderComponent } from './pages/summary-order/summary-order.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SummaryOrderComponent } from './pages/summary-order/summary-order.compo
     PaymentComponent,
     CategoriesComponent,
     SummaryOrderComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

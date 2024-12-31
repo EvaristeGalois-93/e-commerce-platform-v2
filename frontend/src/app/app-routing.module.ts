@@ -10,6 +10,7 @@ import { authGuard } from './guards/auth.guard';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { SummaryOrderComponent } from './pages/summary-order/summary-order.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'ordini', component: CarrelloComponent, canActivate: [authGuard]},
   { path: 'pagamento', component: PaymentComponent, canActivate: [authGuard]},
   { path: 'order-summary', component: SummaryOrderComponent, canActivate: [authGuard]},
+  { path: 'header', component: HeaderComponent},
 ];
 
 @NgModule({
