@@ -1,143 +1,135 @@
-<!-- Section: Design Block -->
-<section class="background-radial-gradient overflow-hidden">
+<!-- Form di Login-->
 
-  <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5 d-flex align-items-center" >
-    <div class="col gx-lg-5 align-items-center mb-5">
-      <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-        <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-          Accedi e rivoluziona <br />
-          <span style="color: hsl(218, 81%, 75%)">il tuo business</span>
-        </h1>
-      </div>
-    </div>
+<section *ngIf="isRegister == false" class="gradient-form" style="background-color: #eee;">
+  <div class="container py-2 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
 
-    <div class="col-lg-5 mb-5 mb-lg-0 position-relative d-flex align-items-center" style="width: 340px;">
-
-        <div class="col card bg-glass mt-5" style="flex-direction: column;">
-          <div class="card-body px-4 py-3 px-md-5">
-            <form *ngIf="isRegister == false" [formGroup]="loginForm">
-
-              <!-- Email input -->
-              <div class="form-outline mb-4">
-                <input type="email" id="email" formControlName="email" placeholder="Email" class="form-control" />
-                <label class="form-label" for="form3Example3">Indirizzo Email</label>
-              </div>
-
-              <!-- Password input -->
-              <div class="form-outline mb-4">
-                <input type="password" id="password" formControlName="password" placeholder="Password" class="form-control" />
-                <label class="form-label" for="form3Example4">Password</label>
-              </div>
-
-              <!-- Register buttons -->
-              <div class="text-center">
-                <button (click)="login()" class="btn sign-in">Accedi</button>
-                <p style="color: white;">o</p>
-                <button (click)="showRegister()" class="btn sign-up">
-                  Registrati
-                </button>              
-              </div>
-            </form>
-
-
-            <form *ngIf="isRegister == true" [formGroup]="registerForm">
-              <!-- 2 column grid layout with text inputs for the first and last names -->
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="firstname" formControlName="firstname" placeholder="Nome" class="form-control" />
-                    <label class="form-label" for="form3Example1">Nome *</label>
-                  </div>
+                <div class="text-center">
+                  <img src="assets/images/atom-modify2.JPG"
+                    style="width: 185px; border-radius: 50%;" alt="logo">
+                  <h4 class="mt-1 mb-5 pb-1">We are The Atom Team</h4>
                 </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="lastname" formControlName="lastname" placeholder="Cognome" class="form-control" />
-                    <label class="form-label" for="form3Example2">Cognome *</label>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="d-flex flex-column">
-                    <mat-form-field appearance="fill" class="w-100 d-flex">
-                      <input matInput [matDatepicker]="picker" formControlName="birth_date" placeholder="gg-mm-aaaa"/>
-                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-datepicker #picker></mat-datepicker>
-                      <!-- <mat-error *ngIf="registerForm.get('birth_date')?.invalid && registerForm.get('birth_date')?.touched">
-                        Inserisci una data valida
-                      </mat-error> -->
-                    </mat-form-field>
-                    <mat-label class="form-label">Data di Nascita *</mat-label>
-                  </div>
-                </div>                
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <select id="gender" formControlName="gender" class="form-control">
-                      <option value="" disabled selected></option>
-                      <option value="male">Uomo</option>
-                      <option value="female">Donna</option>
-                    </select>
-                    <label class="form-label" for="form3Example2">Genere *</label>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <select id="country" placeholder="Seleziona Paese" formControlName="country" class="form-control">
-                      <option value="" disabled selected></option>
-                      <option *ngFor="let country of countries" [value]="country.name">
-                        {{ country.name }}
-                      </option>
-                    </select>
-                    <label class="form-label" for="form3Example1">Paese *</label>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="phone_number" formControlName="phone_number" placeholder="Cellulare" class="form-control" />
-                    <label class="form-label" for="form3Example2">Cellulare *</label>
-                  </div>
-                </div>
-              </div>
 
-              <!-- Email input -->
-              <div class="form-outline mb-4">
-                <input type="email" id="email" formControlName="email" placeholder="Email" class="form-control" />
-                <label class="form-label" for="form3Example3">Indirizzo Email *</label>
-              </div>
+                <form [formGroup]="loginForm">
 
-              <!-- Password input -->
-              <div class="form-outline mb-4">
-                <input type="password" id="password" formControlName="password" placeholder="Password" class="form-control" />
-                <label class="form-label" for="form3Example4">Password *</label>
-              </div>
+                  <p>Accedi al tuo account</p>
 
-              <!-- Account User -->
-              <div class="form-outline mb-4">
-                <input type="checkbox" id="vendorCheckbox" formControlName="isVendor" class="form-check-input" />
-                <label class="form-label" for="vendorCheckbox"> Sei un venditore?</label>
-              </div>
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="email" id="email" formControlName="email" class="form-control"
+                      placeholder="Email" />
+                  </div>
 
-              <!-- Register buttons -->
-              <div class="text-center">
-                <button (click)="register()" class="btn sign-up">
-                  Registrati
-                </button> 
-                <p style="color: white;">o</p> 
-                <button (click)="showLogin()" class="btn sign-in">Accedi</button>            
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="password" id="password" formControlName="password" class="form-control" placeholder="Password" />
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1" style="display: flex; flex-direction: column;">
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" (click)="login()">Login</button>
+                    <a class="text-muted" href="#!">Forgot password?</a>
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2">Don't have an account?</p>
+                    <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-gradient" (click)="showRegister()">Create new</button>
+                  </div>
+
+                </form>
+
               </div>
-            </form>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                <h4 class="mb-4">Empowering Ideas, Inspiring Change</h4>
+                <p class="login-description small mb-0">Step into the future of technology, with groundbreaking devices, unbeatable prices, and service you can trust.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </section>
-<!-- Section: Design Block -->
 
 
-    
+<!-- Form di Registrazione -->
 
 
-  
-  
+<section *ngIf="isRegister == true" class="h-100 gradient-form" style="background-color: #eee;">
+  <div class="container py-2 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+
+                <div class="text-center">
+                  <img src="assets/images/atom-modify2.JPG"
+                    style="width: 185px; border-radius: 50%;" alt="logo">
+                  <h4 class="mt-1 mb-5 pb-1">Join The Atom Team</h4>
+                </div>
+
+                <form [formGroup]="registerForm">
+
+                  <p>Create your account</p>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="text" id="fullname" formControlName="fullname" class="form-control"
+                      placeholder="Full Name" />
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="email" id="email" formControlName="email" class="form-control"
+                      placeholder="Email" />
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="password" id="password" formControlName="password" class="form-control"
+                      placeholder="Password" />
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control"
+                      placeholder="Confirm Password" />
+                  </div>
+
+                  <div class="form-check d-flex justify-content-start mb-4">
+                    <input class="form-check-input" type="checkbox" id="terms" formControlName="terms" />
+                    <label class="form-check-label ms-2" for="terms">
+                      I agree to the <a href="#!" class="text-primary">Terms and Conditions</a>
+                    </label>
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1" style="display: flex; flex-direction: column;">
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" (click)="register()">SignUp</button>
+                    <!-- 
+                    <p class="mb-0 me-2">Don't have an account?</p>
+                    <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-gradient" (click)="showRegister()">Create new</button>
+                    -->
+                    <div class="d-flex align-items-center justify-content-center pb-4">
+                      <p class="mb-0 me-2">Already have an account?</p> 
+                      <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-gradient" (click)="showLogin()">Log in</button>
+                    </div>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                <h4 class="mb-4">Join the Future of Innovation</h4>
+                <p class="register-description small mb-0">Be part of a community where cutting-edge technology meets unbeatable service. Sign up now and redefine your tech journey.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

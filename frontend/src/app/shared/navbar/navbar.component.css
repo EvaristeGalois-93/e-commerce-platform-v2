@@ -8,7 +8,7 @@
 
 .navbar{
   position: fixed; 
-  z-index: 1000; 
+  z-index: 100; 
   width: 100%; 
   /* background: linear-gradient(to right, #450070, #2c3c90); */
   background: linear-gradient(to right, #293573, #511a73, #1c2b79);
