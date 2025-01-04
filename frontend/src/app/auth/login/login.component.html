@@ -76,7 +76,7 @@
 
                 <form [formGroup]="registerForm">
 
-                  <p>Create your account</p>
+                  <p class="register-description">Create your account</p>
 
                   <!-- Nome e Cognome -->
 
@@ -98,38 +98,93 @@
 
                   </div>
 
-                  <!-- Email e Password -->
+                  <!-- Data di Nascita e Genere-->
 
                   <div class="row">
 
                     <div class="col-md-6 mb-4">
-                      <div data-mdb-input-init class="form-outline mb-2">
-                        <input type="email" id="email" formControlName="email" class="form-control"
-                          placeholder="Email" />
+                      <div class="d-flex flex-column">
+                        <mat-form-field appearance="fill" class="w-100 d-flex">
+                          <input matInput [matDatepicker]="picker" formControlName="birth_date" placeholder="gg-mm-aaaa"/>
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                          <!-- <mat-error *ngIf="registerForm.get('birth_date')?.invalid && registerForm.get('birth_date')?.touched">
+                            Inserisci una data valida
+                          </mat-error> -->
+                        </mat-form-field>
                       </div>
-                    </div>
+                    </div>              
 
                     <div class="col-md-6 mb-4">
-                      <div data-mdb-input-init class="form-outline mb-2">
-                        <input type="password" id="password" formControlName="password" class="form-control"
-                          placeholder="Password" />
-                      </div>
-                    </div>
-
-                    <div class="col-md-6 mb-4">
-                      <div data-mdb-input-init class="form-outline mb-2">
-                        <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control"
-                          placeholder="Confirm Password" />
+                      <div class="form-outline">
+                        <select id="gender" formControlName="gender" class="form-control" [ngClass]="{'placeholder': genderControl?.value === null}">
+                          <option value="" disabled>Genere</option>
+                          <option value="male">Uomo</option>
+                          <option value="female">Donna</option>
+                        </select>
+                        <!-- <label class="form-label" for="form3Example2">Genere *</label> -->
                       </div>
                     </div>
 
                   </div>
-                  
 
+                  <!-- Telefono e Indirizzo -->
+
+                  <div class="row">
+
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <select id="country" formControlName="country" class="form-control" [ngClass]="{'placeholder': countryControl?.value === null}">
+                          <option value="" disabled>Paese</option>
+                          <option *ngFor="let country of countries" [value]="country.name">
+                            {{ country.name }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="phone_number" formControlName="phone_number" placeholder="Cellulare" class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+    
+
+                  <!-- Email e Password -->
+
+                  <div class="col">
+
+                    <div class="row mb-4">
+                        <div data-mdb-input-init class="form-outline mb-2">
+                          <input type="email" id="email" formControlName="email" class="form-control" placeholder="Email" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div data-mdb-input-init class="form-outline mb-2">
+                          <input type="password" id="password" formControlName="password" class="form-control" placeholder="Password" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                      <div data-mdb-input-init class="form-outline mb-2">
+                          <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" />
+                      </div>
+                    </div>
+
+
+                    <!-- Account User -->
+                    <div class="form-outline mb-4">
+                      <input type="checkbox" id="vendorCheckbox" formControlName="isVendor" class="form-check-input" />
+                      <label class="form-label" for="vendorCheckbox"> Sei un venditore?</label>
+                    </div>
+                  
+                  </div>
                   
 
                   <div class="form-check d-flex justify-content-start mb-4">
-                    <input class="form-check-input" type="checkbox" id="terms" formControlName="terms" />
+                    <input class="form-check-input" type="checkbox" id="terms" />
                     <label class="form-check-label ms-2" for="terms">
                       I agree to the <a href="#!" class="text-primary">Terms and Conditions</a>
                     </label>

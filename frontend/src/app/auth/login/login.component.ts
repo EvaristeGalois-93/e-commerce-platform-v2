@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
+
     this.registerForm = this.fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
@@ -189,5 +190,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
         }
       );
     }
+  }
+
+  get genderControl() {
+    return this.registerForm.get('gender');
+  }
+
+  get countryControl() {
+    return this.registerForm.get('country');
   }
 }
