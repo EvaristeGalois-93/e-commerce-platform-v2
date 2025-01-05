@@ -39,6 +39,9 @@ export class NavbarComponent {
     this.loginService.isAuth$.subscribe(isAuthenticated => {
       this.isAuth = isAuthenticated;
       console.log('isAuth', this.isAuth);
+      if(this.isAuth){
+        this.ottieniTotaleCarrello();
+      }
     });
 
     this.prodottiService.GetCategories().subscribe((categories: Categories[]) => {
@@ -47,7 +50,7 @@ export class NavbarComponent {
 
     this.initSearchForm();
     this.onValueChanges();
-    this.ottieniTotaleCarrello();
+    // this.ottieniTotaleCarrello();
   }
 
   initSearchForm() {

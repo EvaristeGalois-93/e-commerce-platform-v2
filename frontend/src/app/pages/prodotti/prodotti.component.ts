@@ -51,8 +51,10 @@ export class ProdottiComponent implements OnInit {
 
   ngOnInit() {
     this.ottieniProdotti();
-    this.getWishlist();
     this.isAuth = this.loginService.isAuthenticated();
+    if(this.isAuth){
+      this.getWishlist();
+    }
     this.filteredProducts = this.prodottiService.filteredProducts$.subscribe(products => {
         // sovrascrivo l'array di prodotti quando ci sono nuovi prodotti filtrati
         this.prodotti = products;
