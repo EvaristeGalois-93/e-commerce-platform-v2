@@ -157,6 +157,18 @@
   align-items: center;
   z-index: 1050; /* Assicurati che sia sopra gli altri elementi */
 }
+
+.no-products-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  font-size: 2rem;
+  font-family: ui-sans-serif;
+  text-align: center;
+}
+
 }
 
 
