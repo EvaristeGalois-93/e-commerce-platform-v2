@@ -9,6 +9,7 @@
 
 .background-product-homepage{
   background-image: url('/assets/images/tech.jpg');   
+  min-height: fit-content;
 }
   
   
@@ -121,9 +122,6 @@
   color: red;
 }
 
-/* .bi-heart-fill:hover {
-  color: red;
-} */
 
 .pagination{
   display: flex;
@@ -145,7 +143,20 @@
   .mat-mdc-select-arrow,
   .mat-mdc-paginator-icon {
     color: white !important;
-  }
+}
+
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050; /* Assicurati che sia sopra gli altri elementi */
+}
 }
 
 

@@ -7,12 +7,20 @@
   
   <div class="background-product-homepage">
 
-    <app-spinner *ngIf="isLoading"></app-spinner>
+    <!-- <app-spinner *ngIf="isLoading"></app-spinner> -->
 
-    
+
     <!-- <h1 class="catalogo" style="margin-left: 10px; color: hsl(218, 81%, 95%); font-family: ui-sans-serif"></h1> -->
-      <div class="container px-4 py-5 px-md-5 text-center text-lg-start">
+      <div class="container px-4 py-5 px-md-5 text-center text-lg-start min-vh-100">
+
         <div class="row justify-content-center">
+
+          <div *ngIf="isLoading" class="spinner-overlay">
+            <app-spinner></app-spinner>
+          </div>
+
+          <div class="no-products" *ngIf="prodotti.length === 0" style="color: white; font-size: 2rem; font-family: ui-sans-serif"></div>
+
             <div class="col-md-3 py-2" *ngFor="let prodotto of prodotti; let i = index">
               <div class="card mb-4 d-flex flex-column" style="position: relative; cursor:pointer" [routerLink]="['/prodotti', prodotto.id]">
                 <img [src]="getSafeImageUrl(prodotto.filestorage[0].path)" alt="{{ prodotto.name }}" class="card-img-top">
@@ -46,6 +54,7 @@
         </div>
       </div>
   </div>
+
 </section>
 
 
