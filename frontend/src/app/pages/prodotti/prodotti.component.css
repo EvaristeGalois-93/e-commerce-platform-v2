@@ -1,18 +1,22 @@
 
 .background-radial-gradient {
   z-index: -1;
-  background-size: cover;
+  /* background-size: cover;
   background-position: center;
-  min-height: 100vh;
-  background-image: url('/assets/images/tech.jpg');    
+  min-height: 100vh; */
+  /* background-image: url('/assets/images/tech.jpg');     */
+}
+
+.background-product-homepage{
+  background-image: url('/assets/images/tech.jpg');   
 }
   
   
-  .bg-glass {
+.bg-glass {
     background-color: hsla(0, 0%, 100%, 0.9) !important;
     backdrop-filter: saturate(200%) blur(25px);
     align-items: center;
-  }
+}
 
 .card-body px-4 py-5 px-md-5{
       width: 300px;

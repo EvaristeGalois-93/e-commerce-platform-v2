@@ -1,6 +1,6 @@
-import { filter } from 'rxjs';
+import Swal from 'sweetalert2';
 import { Component, Input } from '@angular/core';
-import { Form, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/auth/login/login.service';
 import { Categories } from 'src/app/models/categories.model';
@@ -107,9 +107,24 @@ filterProducts() {
     // this.ottieniTotaleCarrello();
   }
 
+
   logout() {
-    this.loginService.logout();
-    this.router.navigate(['/login']);
+    Swal.fire({
+      title: 'Sei sicuro?',
+      text: 'Vuoi davvero effettuare il logout?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sì, esci!',
+      cancelButtonText: 'Annulla',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.loginService.logout();
+        this.router.navigate(['/login']);
+        Swal.fire('Logout!', 'Hai effettuato il logout con successo.', 'success');
+      }
+    });
   }
 
   homepage() {
