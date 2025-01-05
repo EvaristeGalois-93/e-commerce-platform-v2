@@ -19,7 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { DettaglioProdottoComponent } from './pages/dettaglio-prodotto/dettaglio-prodotto.component';
-import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { CategoriesComponent } from './shared/categories/categories.component';

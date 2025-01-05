@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginComponent } from './login.component';
 import { LoginModel, RegisterModel } from '../../models/login.model';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -11,9 +11,29 @@ export class LoginService {
   constructor(private http: HttpClient, private carrelloService: CarrelloService) {}
   private baseUrl = 'http://127.0.0.1:8000/api';
 
+  // Token dell'utente
+  private accessToken = new BehaviorSubject<string | null>(null);
+  accessToken$ = this.accessToken.asObservable();
+
+  // Stato di autenticazione
   private authStatus = new BehaviorSubject<boolean>(this.isAuthenticated());
   isAuth$ = this.authStatus.asObservable();
   
+
+  // Ottengo il token di accesso
+  getAccessToken(): string | null {
+    return this.accessToken.value || localStorage.getItem('auth_token');
+  }
+
+  // Effettuo il refresh del token
+  refreshToken(): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/refresh`, {}).pipe(
+      tap((response: any) => {
+        this.accessToken.next(response.access_token);
+        localStorage.setItem('access_token', response.access_token);
+      })
+    );
+  }
 
   login(credenziali: LoginModel) {
     return this.http.post(`${this.baseUrl}/auth/login`, credenziali).pipe(
@@ -35,6 +55,7 @@ export class LoginService {
     localStorage.removeItem('user');
     // localStorage.removeItem('prodottiCarrello');
     this.authStatus.next(false); 
+    this.accessToken.next(null);
   }
 
   register(credenziali: RegisterModel) {

@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
         Route::post('login','login');
         Route::post('register', 'register');
         Route::post('/logout', 'logout');
+        Route::post('/refresh', [AuthController::class, 'refreshToken']);
     });
 
 

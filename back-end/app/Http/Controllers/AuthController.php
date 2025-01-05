@@ -137,4 +137,25 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Successfully logged out']);
     }
+
+    public function refreshToken(Request $request)
+{
+    $refreshToken = $request->cookie('refresh_token'); 
+    
+    if (!$refreshToken) {
+        return response()->json(['message' => 'Refresh token missing'], 401);
+    }
+
+    // Verifica e genera nuovo token
+    try {
+        $payload = JWTAuth::setToken($refreshToken)->getPayload();
+        $newAccessToken = JWTAuth::fromUser(User::find($payload['sub'])); 
+        return response()->json([
+            'access_token' => $newAccessToken
+        ]);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Invalid token'], 401);
+    }
+}
+
 }
