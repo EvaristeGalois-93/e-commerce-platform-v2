@@ -50,6 +50,8 @@ use Illuminate\Support\Facades\Auth;
         Route::get('filter_search', [ProductsController::class, 'filter_search']);
         Route::get('getCategories', [ProductsController::class, 'getCategories']);
         Route::get('show/{id}', [ProductsController::class, 'show']);
+        Route::get('most_popular_products', [ProductsController::class, 'mostPopularProducts']);
+        Route::get('getNewProducts', [ProductsController::class, 'getNewProducts']);
 
 
         Route::group(['middleware' => 'api'], function () {

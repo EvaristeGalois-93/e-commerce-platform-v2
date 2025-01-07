@@ -26,6 +26,7 @@ import { CategoriesComponent } from './shared/categories/categories.component';
 import { SummaryOrderComponent } from './pages/summary-order/summary-order.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { PopularProductsComponent } from './shared/popular-products/popular-products.component';
+import { NewProductsComponent } from './shared/new-products/new-products.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { PopularProductsComponent } from './shared/popular-products/popular-prod
     SummaryOrderComponent,
     HeaderComponent,
     PopularProductsComponent,
+    NewProductsComponent,
   ],
   imports: [
     BrowserModule,

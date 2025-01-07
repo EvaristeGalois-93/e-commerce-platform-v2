@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductRequest;
-use App\Models\Category;
-use App\Models\FileStorage;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Products;
 use App\Models\Wishlist;
+use App\Models\FileStorage;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -195,4 +196,39 @@ public function show($id)
         }
         return response()->json($wishlists, 200);
     }
+
+    public function mostPopularProducts(){
+    
+        $products = Product::with(['filestorage', 'categories']) 
+            ->withCount('wishlists') 
+            ->orderBy('wishlists_count', 'desc')
+            ->take(8)
+            ->get();
+
+        
+        $products->each(function ($product) {
+            $product->filestorage->each(function ($file) {
+                $file->path = asset('storage/' . $file->path);
+            });
+        });
+
+        return response()->json($products, 200);
+    }
+
+    public function getNewProducts(){
+
+        $products = Product::with(['filestorage','categories'])
+            ->orderBy('created_at','desc')
+            ->take(8)
+            ->get();
+
+        $products->each(function ($product) {
+            $product->filestorage->each(function ($file) {
+                $file->path = asset('storage/' . $file->path);
+            });
+        });
+        
+        return response()->json($products, 200);
+    }
+
 }

@@ -29,6 +29,11 @@ class ProductRequest extends FormRequest
             return $this->filter_search();
         }
 
+        if($routeName == 'most_popular_products'){
+            return $this->most_popular_products();
+        }
+
+
         if($routeName == 'store'){
             return $this->store();
         }
@@ -60,6 +65,13 @@ class ProductRequest extends FormRequest
         return [
             'category_id' => 'nullable|numeric',
             'filter_search' => 'nullable|string|max:255',
+        ];
+    }
+
+    public function most_popular_products(){
+        return [
+            // 'category_id' => 'required|array',
+            // 'category_id.*' => 'required|numeric',
         ];
     }
 }

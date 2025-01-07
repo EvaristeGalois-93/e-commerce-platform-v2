@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/auth/login/login.service';
+import { ProductData } from 'src/app/models/prodotti.model';
+import { ProdottiService } from '../prodotti/prodotti.service';
 
 @Component({
   selector: 'app-homepage',
@@ -12,7 +14,9 @@ export class HomepageComponent implements OnInit {
   isAuth: boolean = false;
   user:any = {};
 
-  constructor(private router: Router, private loginService: LoginService) {
+  constructor(
+    private router: Router, 
+    private loginService: LoginService) {
   }
 
   ngOnInit() {

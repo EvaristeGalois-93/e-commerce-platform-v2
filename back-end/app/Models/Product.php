@@ -51,5 +51,10 @@ class Product extends Model
         return $this->belongsToMany(Filestorage::class, 'filestorage_product', 'product_id', 'filestorage_id');
     }
 
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
 
 }

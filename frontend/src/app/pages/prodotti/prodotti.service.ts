@@ -116,6 +116,26 @@ export class ProdottiService {
       })
     );
   }
+
+  getMostPopularProducts(): Observable<ProductData[]> {
+    const requestUrl = `${this.baseUrl}/api/products/most_popular_products`;
+    return this.http.get<ProductData[]>(requestUrl).pipe(
+      catchError((error) => {
+        console.error('Errore nel recupero dei prodotti', error);
+        throw new Error('Errore nella richiesta API');
+      })
+    );
+  }
+
+  getNewProducts(): Observable<ProductData[]> {
+    const requestUrl = `${this.baseUrl}/api/products/getNewProducts`;
+    return this.http.get<ProductData[]>(requestUrl).pipe(
+      catchError((error) => {
+        console.error('Errore nel recupero dei prodotti', error);
+        throw new Error('Errore nella richiesta API');
+      })
+    );
+  }
   
 }
 
