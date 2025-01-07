@@ -7,49 +7,50 @@
 }
 
 
-  .shop-name{
+.shop-name{
       font-size: 6rem; 
       transition: color 0.3s; 
       margin-top: 30px;
-  }
+}
 
-  .custom-text-container{
+.custom-text-container{
     display: flex;
     align-items: center;
     width: fit-content;
-  }
+}
   
-  .first-letter, .last-letter {
+.first-letter, .last-letter {
     font-size: 169;
     font-family: ui-sans-serif;
-  }
+}
   
-  .atom-icon {
+.atom-icon {
     border-radius: 50%;
     width: 43px; 
     height: 43px; 
     background-size:contain; 
     transition: width 0.3s, height 0.3s;
-  }
+}
 
-  .atom-icon:hover {
+.atom-icon:hover {
     width: 46px; 
     height: 50px; 
     /* background-repeat: no-repeat; */
 }
   
-    .card-body px-4 py-5 px-md-5{
+
+.card-body px-4 py-5 px-md-5{
       width: 300px;
-    }
+}
 
 
-  .zoom-on-hover {
+.zoom-on-hover {
     transition: transform 0.3s;
-  }
+}
   
-  .zoom-on-hover:hover {
+.zoom-on-hover:hover {
     transform: scale(1.1);
-  }
+}
 
 
 .zoom-on-hover:hover .first-letter,

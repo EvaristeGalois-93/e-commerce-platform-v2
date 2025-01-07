@@ -110,4 +110,8 @@
     width: 100%;
   }
 
+  .container{
+    margin-top: 50px;
+  }
+
 }

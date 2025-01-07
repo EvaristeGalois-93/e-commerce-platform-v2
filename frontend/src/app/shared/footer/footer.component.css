@@ -1,0 +1,5 @@
+footer {
+    background: linear-gradient(to right, #293573, #511a73, #1c2b79);
+    transition: background 0.3s ease-in-out;
+  }
+  

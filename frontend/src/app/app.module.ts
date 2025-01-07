@@ -25,6 +25,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { CategoriesComponent } from './shared/categories/categories.component';
 import { SummaryOrderComponent } from './pages/summary-order/summary-order.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { PopularProductsComponent } from './shared/popular-products/popular-products.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { HeaderComponent } from './shared/header/header.component';
     CategoriesComponent,
     SummaryOrderComponent,
     HeaderComponent,
+    PopularProductsComponent,
   ],
   imports: [
     BrowserModule,
