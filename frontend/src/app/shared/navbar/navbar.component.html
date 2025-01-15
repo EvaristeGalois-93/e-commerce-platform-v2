@@ -37,16 +37,15 @@
           <form *ngIf="inProduct == true" [formGroup]="searchForm" class="form-inline my-2 my-lg-0 d-flex">
 
             <!-- SELECT CATEGORIE-->
-              <select class="input-category" aria-placeholder="categorie" formControlName="category_id" (change)="filterProducts()">
-              <!-- <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"> -->
-                <option selected value="-1">Tutte le categorie</option>
+              <select class="form-select" [ngStyle]="{'width': selectWidth}" aria-label="Seleziona categoria" formControlName="category_id" (change)="filterProducts(); updateSelectWidth($event)"> <!-- [ngClass]="{'expanded-nav-select': expandedSelect === true}"  -->
+                <option #categoryOption selected value="-1">Tutte le categorie</option>
                 <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
               </select>
 
             <!-- INPUT RICERCA-->
             <input class="form-control mr-2" formControlName="filter_search" type="search" (onInputChange)="filterProducts()" placeholder="Cerca prodotto" aria-label="Search">
           </form>
-        </div>      
+        </div>
 
         <!-- CARRELLO E LOGIN -->
         <ul class="navbar-nav ml-auto">

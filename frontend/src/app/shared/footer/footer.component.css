@@ -1,8 +1,14 @@
 footer {
-    background: linear-gradient(to right, #293573, #511a73, #1c2b79);
+    /* background: linear-gradient(to right, #293573, #511a73, #1c2b79); */
+    background: linear-gradient(to right, #2d3a5f, #3c4473);
     transition: background 0.3s ease-in-out;
     height: 200px;
     display: flex;
     align-items: center;
-  }
+}
+
+footer:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
   

@@ -1,3 +1,7 @@
+.popular-products{
+    background: linear-gradient(to right, #262d3f, #7587ed);
+}
+
 .card-img-top{
     height: 212px;
     object-fit: contain;

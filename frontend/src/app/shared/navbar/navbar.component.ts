@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/auth/login/login.service';
@@ -8,12 +8,17 @@ import { CarrelloService } from 'src/app/pages/carrello/carrello.service';
 import { ProdottiService } from 'src/app/pages/prodotti/prodotti.service';
 import { ProductData } from 'src/app/models/prodotti.model';
 
+interface CustomEvent extends Event {
+  target: HTMLSelectElement;
+}
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('categoryOption', { static: false }) categoryOption!: ElementRef<HTMLSelectElement>;
 
   @Input() inProduct: boolean = false;
   @Input() items: number = 0;
@@ -24,8 +29,10 @@ export class NavbarComponent {
   filteredProducts: ProductData[] = [];
   searchForm: FormGroup = new FormGroup({});
   selectedCategory: Categories | null = null;
+  
 
   isCategoriesVisible = false;
+  selectWidth: string = 'auto';
 
   constructor(
     private router: Router,
@@ -34,6 +41,17 @@ export class NavbarComponent {
     private prodottiService: ProdottiService,
     private fb: FormBuilder 
   ) {}
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      if (this.categoryOption?.nativeElement) {
+        const selectElement = this.categoryOption.nativeElement;
+        const defaultEvent = { target: selectElement } as CustomEvent;
+        this.updateSelectWidth(defaultEvent);
+      }
+    });
+  }
+
 
   ngOnInit() {
     this.loginService.isAuth$.subscribe(isAuthenticated => {
@@ -62,7 +80,7 @@ export class NavbarComponent {
 
 onValueChanges() {
   this.searchForm.get('category_id')?.valueChanges.subscribe(value => {
-    console.log('Categoria selezionata:', value);
+    // console.log('Categoria selezionata:', value);
     this.filterProducts(); 
   });
 
@@ -82,9 +100,10 @@ filterProducts() {
 
   this.prodottiService.filterSearch(filterData).subscribe((response: any) => {
     this.filteredProducts = response.data;
-    console.log('prodotti filtrati', this.filteredProducts);
+    // console.log('prodotti filtrati', this.filteredProducts);
     
     this.prodottiService.updateFilteredProducts(this.filteredProducts);
+    
   });
 }
 
@@ -94,7 +113,7 @@ filterProducts() {
     this.carrelloService
       .GetProdottiCarrello()
       .then((prodotti: any) => {
-        console.log('Prodotti recuperati:', prodotti);
+        // console.log('Prodotti recuperati:', prodotti);
         this.prodottiCarrello = prodotti.orders;
         this.items = this.prodottiCarrello.length;
         // this.items = this.carrelloService.getCartProducts().length;
@@ -154,6 +173,35 @@ filterProducts() {
 
   hideCategories() {
     this.isCategoriesVisible = false;
+  }
+
+  updateSelectWidth(event: Event) {    
+    // ottengo l'elemento select
+    const selectElement = event.target as HTMLSelectElement;
+    console.log('selectElement', selectElement);
+    
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    console.log('selectedOption', selectedOption);
+    
+    
+    // Creare un elemento temporaneo per calcolare la larghezza
+    const tempSpan = document.createElement('span');
+    tempSpan.style.visibility = 'hidden';
+    tempSpan.style.position = 'absolute';
+    tempSpan.style.whiteSpace = 'nowrap';
+    tempSpan.textContent = selectedOption.textContent || '';
+    document.body.appendChild(tempSpan);
+
+    // lunghezza = larghezza testo + padding
+    const width = tempSpan.offsetWidth + 50; 
+    this.selectWidth = `${width}px`;
+
+    console.log('larghezza elemento', tempSpan.offsetWidth);
+    console.log('larghezza select', this.selectWidth);
+    
+
+    // Rimuovi l'elemento temporaneo
+    document.body.removeChild(tempSpan);
   }
 
 }

@@ -10,10 +10,13 @@
   position: fixed; 
   z-index: 100; 
   width: 100%; 
-  /* background: linear-gradient(to right, #450070, #2c3c90); */
-  background: linear-gradient(to right, #293573, #511a73, #1c2b79);
-  ;
+  /* background: linear-gradient(to right, #293573, #511a73, #1c2b79); */;
+  background: linear-gradient(to right, #2d3a5f, #3c4473);
   height: 50px;
+}
+
+.navbar:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .logo{
@@ -29,7 +32,8 @@
 }
 
 .nav-item, .navbar-brand{
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: small;
+  font-family: Netflix Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 .btn-outline-custom{
@@ -68,22 +72,22 @@
 
 
 .form-control{
-  min-width: 100px;
-  background: linear-gradient(to right, #450070, #2c3c90);
+  min-width: 335px; 
+  background: linear-gradient(to right, #262d3f, #7587ed);
   color:#0096c8;
 }
 
-.input-category{
-  background: linear-gradient(to right, #450070, #2c3c90);
-  min-width: 100px;
-  border-radius: 8px;
-  font-size: larger;
+.form-select{
+  color: #0096c8;
+  background: linear-gradient(to right, #262d3f, #7587ed);
+  border-radius: var(--bs-border-radius);
   scrollbar-width: thin !important;
+  transition: width 0.3s ease;  
+  width: 150px;
 }
 
-.input-category option{
-  background: linear-gradient(to right, #450070, #2c3c90) !important;
-  background-color: #450070 !important;
+.form-select option{
+  background-color: #143050 !important;
   color: #0096c8 !important;
 }
 
@@ -91,3 +95,12 @@ input::placeholder {
   color:#0096c8; 
   opacity: 1; 
 }
+
+.nav-select-placeholder{
+  z-index: 1000;
+  color: white;
+}
+
+/* .expanded-nav-select{
+  max-width: 200px !important;
+} */

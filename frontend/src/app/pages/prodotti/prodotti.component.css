@@ -8,7 +8,8 @@
 }
 
 .background-product-homepage{
-  background-image: url('/assets/images/tech.jpg');   
+  /* background-image: url('/assets/images/tech.jpg');    */
+  background: linear-gradient(to right, #262d3f, #7587ed);
   min-height: fit-content;
 }
   
@@ -42,7 +43,8 @@
   width: 100%;
   margin: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: linear-gradient(to right, #450070, #2c3c90);
+  background: linear-gradient(to right, #262d3f, #3c4473);
+  /* background: linear-gradient(to right, #450070, #2c3c90); */
 }
 
 .card:hover {
@@ -75,7 +77,7 @@
 .card-price{
   font-size: 16px;
   font-weight: 400;
-  color: white;
+  color: #17b6d8;
 }
 
 .card-footer{
@@ -131,7 +133,8 @@
 
 .mat-mdc-paginator{
   border-radius: 15px;
-  background: linear-gradient(to right, #450070, #2c3c90);
+  background: linear-gradient(to right, #2d3a5f, #3c4473);
+  /* background: linear-gradient(to right, #450070, #2c3c90); */
   /* background-color: #8100a6; */
   /* color: white; */
 }
