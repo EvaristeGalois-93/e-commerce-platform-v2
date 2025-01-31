@@ -54,9 +54,6 @@ export class CarrelloService {
 }
 
   
-
-  
-
   salvaProdottoSelezionatoInCarrello(prodotto_id: any) {
     return this.http.post(`${this.baseUrl}/api/cart/store`, prodotto_id);
   }
@@ -99,7 +96,7 @@ export class CarrelloService {
 
   async UpdateProdottoSelezionato(
     id: number,
-    prodotto: CarrelloModel
+    prodotto: Order
   ): Promise<void> {
     const requestUrl = `${this.baseUrl}/api/cart/update/${id}`;
     return new Promise<void>((resolve, reject) => {
@@ -116,5 +113,11 @@ export class CarrelloService {
           },
         });
     });
+  }
+
+  clearCart() {
+    // localStorage.removeItem('prodottiCarrello');
+    this.cartProductsSubject.next([]);
+    // this.cartLenghtSubject.next(0); 
   }
 }

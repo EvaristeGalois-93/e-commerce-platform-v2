@@ -36,6 +36,10 @@
       transform: scale(1.2);
     }
   }
+
+.mat-mdc-form-field-icon-suffix{
+  line-height: unset !important;
+}
   
 /* html, body { height: 100%; } */
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

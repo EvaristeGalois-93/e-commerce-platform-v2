@@ -32,7 +32,7 @@ export class ProdottiComponent implements OnInit {
 
   // cartProducts: CarrelloModel[] = [];
   catalogo_prodotti: string = '';
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   isAuth: boolean = false;
   message: string = '';
   isWishList: boolean = false;
@@ -59,10 +59,11 @@ export class ProdottiComponent implements OnInit {
         // sovrascrivo l'array di prodotti quando ci sono nuovi prodotti filtrati
         this.prodotti = products;
         console.log('prodotti filtrati', products);
+
+        if(this.prodotti.length === 0){
+          this.message = 'Nessun prodotto trovato';
+        }
     });
-    if(this.prodotti.length === 0){
-      this.message = 'Nessun prodotto trovato';
-    }
   }
 
   ngOnDestroy() {
@@ -83,7 +84,7 @@ export class ProdottiComponent implements OnInit {
   }
 
   ottieniProdotti(page: number = 0) {
-    this.isLoading = true;
+    // this.isLoading = true;
     this.prodottiService.GetProducts(page+1).then((response: ProdottiModel) => {      
       this.prodotti = response.data;
       console.log('prodotti', this.prodotti);

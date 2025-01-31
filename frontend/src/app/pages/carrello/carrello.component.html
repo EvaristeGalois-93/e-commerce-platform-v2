@@ -16,7 +16,7 @@
               <h5>{{order.product.name}}</h5>
               <!-- <p style="font-weight: bold; margin: 0;">Prezzo: {{order.product.price}} €</p> -->
               <p style="margin: 0;">Quantità: 
-                <select [(ngModel)]="order.quantity">
+                <select [(ngModel)]="order.quantity" (change)="updateOrderQuantity(order.id, order.quantity)">
                   <option *ngFor="let quantity of [1, 2, 3, 4, 5]" [value]="quantity">{{quantity}}</option>
                 </select>
               </p>

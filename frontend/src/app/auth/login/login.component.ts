@@ -2,7 +2,6 @@ import * as $ from 'jquery';
 import 'bootstrap-datepicker'; 
 import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
-import { LoginModel } from '../../models/login.model';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';

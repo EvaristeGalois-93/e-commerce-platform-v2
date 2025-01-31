@@ -108,24 +108,32 @@ addNewShippingAddress(): void {
 
   // Funzione per salvare l'indirizzo di spedizione
 saveCardPayment(): boolean {
-  if (this.paymentForm.valid) {
-    const paymentData = this.paymentForm.value;
+  console.log('paymentForm', this.paymentForm.value);
+  
+  if(this.paymentForm.get('paymentMethod')?.value === 'creditCard'){
+    if (this.paymentForm.valid) {
+      const paymentData = this.paymentForm.value;
+      console.log('Form pagamento salvato:', paymentData);
+      
+      this.paymentService.setPaymentData(paymentData);  // considerare salvataggio nel localStorage piuttosto che usare un subject
+      return true;
+    } else {
+      console.log('Form non valido');
+      return false;
+    }
+  } else if(this.paymentForm.get('paymentMethod')?.value === 'cod'){
+    const paymentData = this.paymentForm.value.paymentMethod;
     console.log('Form pagamento salvato:', paymentData);
-    // Logica per salvare il metodo di pagamento
-    this.paymentService.setPaymentData(paymentData);  // salvare nel localStorage piuttosto che usare un subject
-
+    
+    this.paymentService.setPaymentData(paymentData);  
     return true;
-  } else {
-    console.log('Form non valido');
-    return false;
-  }
+  } else return false;
 }
 
 addNewCardPayment(): void {
   if (this.paymentForm.valid) {
     const paymentData = this.paymentForm.value;
     console.log('Nuovo metodo aggiunto:', paymentData);
-    // Logica per aggiungere un nuovo metodo
   } else {
     console.log('Form non valido');
   }
@@ -144,7 +152,7 @@ addNewCardPayment(): void {
 
   applyPromotion() {
     if (this.cartTotal > 300 && this.orders.length >= 3) {
-      // Sort items by price and subtract the 2 cheapest ones
+      // ordino i prodotti per prezzo e sottraggo i due più economici
       const sortedOrders = [...this.orders].sort((a, b) => a.product.price - b.product.price);
       const discount = sortedOrders[0].product.price + sortedOrders[1].product.price;
       this.discountedTotal = this.cartTotal - discount;
@@ -155,7 +163,7 @@ addNewCardPayment(): void {
 
 calculateFinalTotal() {
   this.finalTotal = this.discountedTotal;
-  // Add €10 if payment is by cash on delivery
+  // aggiungo 10€ per il pagamento alla consegna
   if (this.selectedPayment === 'cod') {
       this.finalTotal += 10;
   }
@@ -180,6 +188,9 @@ placeOrder() {
   
   // navigo alla pagina di riepilogo dell'ordine
   if(this.saveCardPayment() && this.saveShippingAddress()){
+    this.paymentService.setTotalPayment(this.finalTotal);
+
+    this.carrelloService.clearCart();
     this.router.navigate(['/order-summary']);
   } else {
     Swal.fire({

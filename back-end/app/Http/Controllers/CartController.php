@@ -55,7 +55,7 @@ class CartController extends Controller
         $order = Cart::find($id);
         if ($order) {
             $order->update($request->all());
-            return response()->json(['message' => 'Order updated successfully']);
+            return response()->json(['message' => 'Order updated successfully', $order]);
         } else {
             return response()->json(['message' => 'Order not found'], 404);
         }

@@ -122,7 +122,29 @@ export class CarrelloComponent implements OnInit {
           });
       }
     });
+}
+
+updateOrderQuantity(id: number, quantity: number) {
+  
+  const prodotto = this.prodottiCarrello.find(order => order.id == id);  
+  
+ 
+  if (prodotto) {
+    prodotto.quantity = quantity; 
+
+    this.carrelloService.UpdateProdottoSelezionato(id, prodotto)
+      .then(() => {
+        console.log(`Quantità aggiornata per l'ordine ${id}: ${quantity}`);
+        
+        // aggiorno il localStorage
+        localStorage.setItem('prodottiCarrello', JSON.stringify(this.prodottiCarrello));
+      })
+      .catch((error) => {
+        console.error('Errore durante l\'aggiornamento della quantità:', error);
+      });
   }
+}
+
 
 }
 

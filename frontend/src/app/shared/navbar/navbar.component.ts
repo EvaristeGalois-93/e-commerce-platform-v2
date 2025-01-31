@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 import { Component, Input, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { LoginService } from 'src/app/auth/login/login.service';
 import { Categories } from 'src/app/models/categories.model';
 import { CarrelloService } from 'src/app/pages/carrello/carrello.service';
@@ -40,7 +40,16 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private loginService: LoginService,
     private prodottiService: ProdottiService,
     private fb: FormBuilder 
-  ) {}
+  ) 
+  {
+    this.router.events.subscribe(event => {
+      // se cambia rotta
+      if (event instanceof NavigationStart) {
+        // resetto i filtri
+        this.resetFilters();
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -69,6 +78,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.initSearchForm();
     this.onValueChanges();
     // this.ottieniTotaleCarrello();
+  }
+
+  // ngOnDestroy() {
+  //   this.resetFilters();
+  // }
+
+  resetFilters() {
+    this.searchForm.reset(); // Resetta il form
+    this.prodottiService.updateFilteredProducts([]); // Resetta il BehaviorSubject
   }
 
   initSearchForm() {
@@ -184,7 +202,7 @@ filterProducts() {
     console.log('selectedOption', selectedOption);
     
     
-    // Creare un elemento temporaneo per calcolare la larghezza
+    // creo un elemento temporaneo per calcolare la larghezza
     const tempSpan = document.createElement('span');
     tempSpan.style.visibility = 'hidden';
     tempSpan.style.position = 'absolute';

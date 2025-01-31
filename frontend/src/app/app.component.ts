@@ -4,6 +4,7 @@ import { CarrelloModel } from './models/carrello.model';
 import { CarrelloService } from './pages/carrello/carrello.service';
 import { filter } from 'rxjs';
 import { LoginService } from './auth/login/login.service';
+import { ProdottiService } from './pages/prodotti/prodotti.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ export class AppComponent {
   constructor(
     private router: Router,
     private carrelloService: CarrelloService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private prodottiService: ProdottiService
   ) {
     // document.body.style.cursor = 'none';
     
@@ -38,8 +40,13 @@ export class AppComponent {
   ngOnInit() {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.inProduct = this.router.url === '/prodotti';
+      .subscribe((event: any) => {
+        // se la rotta non è '/prodotti', resetto i prodotti filtrati
+        if (event.urlAfterRedirects !== '/prodotti') {
+          this.prodottiService.updateFilteredProducts([]);
+        }
+        // se la rotta è '/prodotti', imposto inProduct a true
+        this.inProduct = event.urlAfterRedirects === '/prodotti';
       });
   
     this.carrelloService.cartProducts$.subscribe((prodotti) => {

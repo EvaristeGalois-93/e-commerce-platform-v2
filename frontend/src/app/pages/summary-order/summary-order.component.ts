@@ -11,6 +11,7 @@ export class SummaryOrderComponent implements OnInit {
   orders: any[] = [];
   shippingData: any;
   paymentData: any;
+  orderTotal: number = 0;
 
   constructor(private paymentService: PaymentService) {}
 
@@ -26,12 +27,18 @@ export class SummaryOrderComponent implements OnInit {
     this.paymentService.shippingData$.subscribe(data => {
       this.shippingData = data;
       console.log('Dati spedizione:', this.shippingData);
-      
     });
 
     this.paymentService.paymentData$.subscribe(data => {
       this.paymentData = data;
       console.log('Dati pagamento:', this.paymentData);
     });
+
+    this.paymentService.totalPayment$.subscribe(total => {
+      this.orderTotal = total;
+      console.log('Totale pagamento:', this.orderTotal);
+    });
+
+    
   }
 }

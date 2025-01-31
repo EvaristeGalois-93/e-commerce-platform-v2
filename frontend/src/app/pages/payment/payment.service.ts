@@ -16,6 +16,10 @@ export class PaymentService {
   private paymentDataSubject = new BehaviorSubject<any>(null);
   paymentData$ = this.paymentDataSubject.asObservable();
 
+  // Totale Ordine
+  private totalPaymentSubject = new BehaviorSubject<number>(0);
+  totalPayment$ = this.totalPaymentSubject.asObservable();
+
   // Aggiorno i dati di spedizione
   setShippingData(shippingData: any): void {
     this.shippingDataSubject.next(shippingData);
@@ -24,6 +28,10 @@ export class PaymentService {
   // Aggiorno i dati di pagamento
   setPaymentData(paymentData: any): void {
     this.paymentDataSubject.next(paymentData);
+  }
+
+  setTotalPayment(totalPayment: number): void {
+    this.totalPaymentSubject.next(totalPayment);
   }
 
   getShippingData() {

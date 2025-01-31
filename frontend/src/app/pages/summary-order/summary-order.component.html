@@ -1,27 +1,30 @@
 <div class="container my-5">
     <!-- Barra di stato dell'ordine -->
+
     <div class="order-status-bar mb-4">
         <p class="h5">Stato dell'Ordine: <span class="badge bg-success">Ordine ricevuto</span></p>
         <p>Grazie per aver effettuato un ordine! Ecco i dettagli dell'ordine:</p>
     </div>
 
     <!-- Sezione Riepilogo Ordine -->
+
     <div class="order-summary-card p-4 mb-4 shadow-sm border rounded">
         <h4>Riepilogo Ordine</h4>
         <div *ngFor="let order of orders" class="d-flex align-items-center py-2 border-bottom">
             <img [src]="order.product.filestorage[0].path" alt="{{order.product.name}}" class="order-item-image me-3" style="width: 80px; height: auto;">
             <div class="order-item-info flex-grow-1">
                 <h6>{{ order.product.name }}</h6>
-                <p class="text-muted">Quantità: {{ order.product.quantity }}</p>
+                <p class="text-muted">Quantità: {{ order.quantity }}</p>
                 <p><strong>{{ order.product.price }} €</strong></p>
             </div>
         </div>
         <div class="total-amount mt-3 text-end">
-            <!-- <h5>Totale Ordine: {{ orderTotal }} €</h5> -->
+            <h5>Totale Ordine: {{ orderTotal }} €</h5>
         </div>
     </div>
 
     <!-- Sezione Informazioni di Spedizione e Pagamento -->
+
     <div class="order-info p-4 mb-4 shadow-sm border rounded">
         <h4>Informazioni di Spedizione</h4>
         <p>Indirizzo: {{ shippingData.address }}</p>
@@ -32,6 +35,7 @@
     </div>
 
     <!-- Bottone per Visualizzare Dettagli Ordine -->
+
     <div class="text-end">
         <!-- <button class="btn btn-primary" (click)="goToOrderDetails()">Visualizza Dettagli Ordine</button> -->
     </div>
