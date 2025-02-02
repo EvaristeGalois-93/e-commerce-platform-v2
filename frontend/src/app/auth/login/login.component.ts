@@ -3,7 +3,7 @@ import 'bootstrap-datepicker';
 import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators, } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 
@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
   isRegister: boolean = false;
+
+  confirmPassword: string = '';
 
   countries: Country[] = [
     { name: 'Italy' },
@@ -70,15 +72,25 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.registerForm = this.fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      birth_date: ['', [Validators.required]],
+      birth_date: ['', [Validators.required, this.ageValidator]],
       gender: ['', [Validators.required]],
       country: ['', [Validators.required]],
       phone_number: ['', [Validators.required]],
       isVendor: [''],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-    });
+      password: ['', [Validators.required, Validators.minLength(8), this.passwordFormatValidator]],
+      confirmPassword: ['', Validators.required]
+    },
+    { validator: this.passwordsMatchValidator });
   }
+
+  // validazione password
+  passwordFormatValidator(control: AbstractControl): ValidationErrors | null {
+    const password = control.value;
+    const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return pattern.test(password) ? null : { invalidFormat: true };
+  }
+
 
   login() {
     if (this.loginForm.valid) {
@@ -152,9 +164,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
     console.log('register', this.registerForm.value);
     
     if (this.registerForm.valid) {
-      const credenziali = this.registerForm.value;
+      const credenziali = {...this.registerForm.value};
+      delete credenziali.confirmPassword;
 
-      console.log('credenziali', credenziali);
+      // console.log('credenziali', credenziali);
 
       this.loginService.register(credenziali).subscribe(
         (response) => {
@@ -165,6 +178,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
             icon: 'success',
             confirmButtonText: 'OK'
           });
+          this.registerForm.reset();
           this.router.navigate(['/login']);
           this.isRegister = false;
         },
@@ -189,6 +203,49 @@ export class LoginComponent implements OnInit, AfterViewInit {
         }
       );
     }
+  }
+
+  // verifico corrispondenza tra le password
+  passwordsMatchValidator(formGroup: FormGroup): ValidationErrors | null {
+    const password = formGroup.get('password')?.value;
+    const confirmPassword = formGroup.get('confirmPassword')?.value;
+  
+    if (confirmPassword && confirmPassword !== password) {
+      formGroup.get('confirmPassword')?.setErrors({ notMatching: true });
+      return { notMatching: true };
+    }
+  
+    return null;
+  }
+
+  // validator età minima 18 anni
+  ageValidator = (control: any): ValidationErrors | null => {
+    const birthDate = control.value;
+    
+    if (!birthDate) {
+      return null;
+    }
+  
+    const parsedDate = new Date(birthDate);
+    const age = this.calculateAge(parsedDate);
+    
+    return age < 18 ? { tooYoung: true } : null;
+  }
+
+  calculateAge(parsedDate: Date): number {
+    console.log('calcolo eta', parsedDate);
+    const today = new Date();
+    const birthYear = parsedDate.getFullYear();
+    const birthMonth = parsedDate.getMonth();
+    const birthDay = parsedDate.getDate();
+    const age = today.getFullYear() - birthYear;
+    const monthDiff = today.getMonth() - birthMonth;
+    const dayDiff = today.getDate() - birthDay;
+
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      return age - 1;
+    }
+    return age;
   }
 
   get genderControl() {

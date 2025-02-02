@@ -15,7 +15,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { DettaglioProdottoComponent } from './pages/dettaglio-prodotto/dettaglio-prodotto.component';
@@ -27,6 +27,18 @@ import { SummaryOrderComponent } from './pages/summary-order/summary-order.compo
 import { HeaderComponent } from './shared/header/header.component';
 import { PopularProductsComponent } from './shared/popular-products/popular-products.component';
 import { NewProductsComponent } from './shared/new-products/new-products.component';
+
+const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: 'YYYY-MM-DD',
+  },
+  display: {
+    dateInput: 'DD-MM-YYYY',
+    monthLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @NgModule({
   declarations: [
@@ -65,7 +77,9 @@ import { NewProductsComponent } from './shared/new-products/new-products.compone
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true 
-  }],
+  },
+  { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
