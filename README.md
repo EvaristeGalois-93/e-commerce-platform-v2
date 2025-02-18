@@ -1,28 +1,30 @@
-1. Istruzioni per la compilazione del codice:
+1. Instructions for Code Compilation:
+   
+• Frontend: You need to install Angular using the command:
 
-- Frontend: E' necessario installare Angular tramite il comando
-  npm install -g @angular/cli
+              npm install -g @angular/cli
 
-ed avviare il server tramite il comando
+and start the server using the command:
 
-                                   ng serve
+              ng serve
 
-- Backend: E' necessaria l'installazione di composer e della libreria Laratrust, ed avviare il server tramite il comando
+• Backend: You need to install Composer and the Laratrust library, and start the server using the command:
 
-                               php artisan serve
+              php artisan serve
 
-2. Breve descrizione del progetto:
+2. Project Description:
 
-Il suddetto progetto è stato sviluppato utilizzando Angular come tecnologia front-end e Laravel come tecnologia
-back-end.
+This project was developed using Angular as the front-end technology and Laravel as the back-end technology.
 
-Il sottoscritto si è posto l'obiettivo di elaborare un esempio di e-commerce che potesse garantire un'esperienza
-fruibile all'utente. A tale scopo si è creata:
+The objective was to create an example of an e-commerce application that provides a user-friendly experience. To achieve this, the following features were implemented:
 
-1. una pagina iniziale (homepage) dal carattere e design semplici con una navbar che permette la navigazione tra le varie rotte. Inoltre, solo se si è effettuato l'accesso come venditore è possibile visualizzare un bottone di reindirizzamento alla propria dashboard[1];
-2. una pagina dei prodotti nella quale è possibile visionare tutti i prodotti disponibili (e non), navigare nella pagina di dettaglio, filtrare per nome e categoria ed aggiungerli al carrello (quest'ultima operazione solamente se si son effettuati registrazione e login);
-3. una pagina di carrello in cui è possibile visionare i prodotti aggiunti dal cliente, sceglierne la quantità, eliminarlo o procedere all'acquisto[2];
-4. una pagina di login in cui è possibile effettuare la registrazione (da utente o da venditore) e di conseguenza accedere all'area clienti autenticandosi.
+A registration and login page where users can sign up (including as sellers) and log in.
+A homepage with a simple design and a navbar for navigating between different components, as well as a carousel displaying the most purchased and most recent products. Additionally, once logged in as a seller, a button appears to redirect to the seller's dashboard[1];
+A products page where users can view all available (and unavailable) products, complete with title, description, and price. They can also navigate to the product detail page, filter by name and category, add products to favorites and the cart (these actions are available only for authenticated users). Additionally, pagination is implemented for product listings.
+A cart page where users can view the products they have added, adjust quantities, remove items, or proceed to checkout;
+A checkout and payment page where users can review the order summary, including applied discounts, enter and save their shipping address, select the payment method (cash or credit card), and complete the payment[2];
+An order summary page displaying the details of the purchased products, the shipping address, and the selected payment method.
 
-[1] la dashboard è in fase di sviluppo;
-[2] la pagina di acquisto dev'essere ancora implementata;
+
+[1] The dashboard is under development.
+[2] Payment has front-end validation but no back-end validation, as it is "mocked."
